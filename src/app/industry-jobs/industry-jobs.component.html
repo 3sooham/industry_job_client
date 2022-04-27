@@ -1,0 +1,139 @@
+<p>industry-jobs works!</p>
+<div>나는인더스트리</div>
+<div class="up-arrow" onclick="clickupArrow()"></div>
+<div>나는인더스트리2</div>
+<!--
+	get에 error 생기면 job들 보여주는 대신에 에러 보여줘야함
+-->
+
+<div>
+    <div class="up-arrow" onclick="clickupArrow()"></div>
+    <div class="down-arrow" onclick="clickDownArrow()"></div>
+ </div>
+
+<table *ngIf="industryJobs" class="table table-hover">
+  <thead>
+    <tr>
+    	<!--
+				column에다가 onclick으로 sorting 하는 것 넣어줘야함
+    	-->
+      <th scope="col">
+      	시작 시간
+  	  </th>
+  	  <th scope="col">
+      	끝나는 시간
+  	  </th>
+  	  <th scope="col">
+      	소요 시간
+      	이것도 백엔드에서 초말고 months 
+  	  </th>
+  	  <th scope="col">
+      	진행도
+  	  </th>
+  	  <th scope="col">
+      	위치
+  	  </th>
+  	  <th scope="col">
+      	이거 activity 아이디 백엔드에서 ramAactivit이거로 숫자말고 Reaction 이런거로 변경해야함
+  	  </th>
+  	  <th scope="col" class="sort" id="runs" (click)="onClickSort('runs')">
+			 	런수
+  	  </th>
+  	  <th scope="col">
+      	블루 프린트
+  	  </th>
+  	  <th scope="col">
+      	생산품
+  	  </th>
+  	  <th scope="col">
+  	  	asd
+  	  </th>
+    </tr>
+  </thead>
+  <tbody>
+  	<ng-container *ngFor="let job of industryJobs; index as i">
+	 	<tr>
+	 		<td>
+	 			{{job.start_date}}
+	 		</td>
+	 		<td>
+	 			{{job.end_date}}
+	 		</td>
+	 		<td>
+	 			{{job.duration}}
+	 		</td>
+	 		<td>
+	 			progress bar
+	 		</td>
+	 		<td>
+	 			{{job.facility.name}}
+	 		</td>
+	 		<td>
+	 			{{job.activity_id}}
+	 		</td>
+	 		<td>
+	 			{{job.runs}}
+	 		</td>
+	 		<td>
+	 			<img src='https://images.evetech.net/types/{{job.blueprint_type_id}}/bpc?size=32'>
+	 			{{job.blueprint}}
+	 		</td>
+	 		<td>
+	 			{{job.blueprint_type_id}}
+	 		</td>
+	 		<td>
+	 			<img src='https://images.evetech.net/characters/{{job.installer_id}}/portrait?size=32'>
+	 			{{job.installer_name}}
+	 		</td>
+	 	</tr>
+	</ng-container>
+  </tbody>
+</table>
+<div *ngIf="pageSize > 0">
+  <app-paginator [pageSize]="pageSize"></app-paginator>
+</div>
+
+
+<div>==============================================</div>
+
+<table *ngIf="industryJobs" class="table table-hover">
+  <thead>
+    <tr>
+    	<!--
+			이거 column 개수를 리액션, 인벤션 등에 따라서 다르게해야할것 같기도함
+			ng-container 사용해서 if else로 하면될듯
+    	-->
+      <th scope="col">id</th>
+      <th scope="col" *ngFor="let item of industryJobs[0] | keyvalue">
+      	{{item.key}}
+  	  </th>
+    </tr>
+  </thead>
+  <tbody>
+  	<ng-container *ngFor="let job of industryJobs; index as i">
+	 	<tr>
+	 		<th scope="row">{{i + 1}}</th>
+	 		<td *ngFor="let item of job | keyvalue">
+	 			{{item.value}}
+	 		</td>
+	 	</tr>
+	</ng-container>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only"></span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only"></span>
+      </a>
+    </li>
+  </ul>
+</nav>

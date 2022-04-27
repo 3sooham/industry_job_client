@@ -1,19 +1,25 @@
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" routerLink="/login">Login</a>
-        <a class="nav-item nav-link" routerLink="/register">Register</a>
-    </div>
-</nav>
+<ng-container class="upper-navbar" *ngIf="name">
+	<header class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+	  <a class="navbar-brand" href="/">
+	  	<img [src]="portraitUrl" width="30" height="30" alt="">{{name}}
+	  </a>
 
-<!-- main content container -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </div>
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/industry-jobs">IndustryJobs</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/industry-jobs">KillMails</a>
+	      </li>
+	    </ul>
+	  </div>
+	</header>
+</ng-container>
+
+<div class="login">
+	<router-outlet></router-outlet>
 </div>

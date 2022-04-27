@@ -1,0 +1,14 @@
+<div *ngIf="pageSize" class="paginator-container">
+  <div class="page-item prev" (click)="onClickPrev()" [ngClass]="{'inactive': selectedPage === 1}">
+    <span class="material-icons">arrow_back_ios</span>
+  </div>
+  <div *ngFor="let page of pages">
+    <div class="page-item page-number"
+         (click)="onClickPage(page)" [ngClass]="{'selected': page === selectedPage }">
+      {{page}}
+    </div>
+  </div>
+  <div class="page-item next" (click)="onClickNext()" [ngClass]="{'inactive': selectedPage >= pageSize}">
+    <span class="material-icons">arrow_forward_ios</span>
+  </div>
+</div>

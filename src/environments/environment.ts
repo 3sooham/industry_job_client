@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  tokenUrl: 'http://13.124.169.90:8001/api/v1/account/user/eve_login'
 };
 
 /*
